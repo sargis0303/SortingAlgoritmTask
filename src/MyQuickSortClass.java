@@ -14,7 +14,7 @@ public class MyQuickSortClass {
 
     }
 
-    public static void quickSort(int[] numbers, int begin, int end) {
+    public static int partition(int[] numbers, int begin, int end) {
 
         int pivot = end;
 
@@ -28,6 +28,18 @@ public class MyQuickSortClass {
                 counter++;
             }
         }
+        int temp = numbers[pivot];
+        numbers[pivot] = numbers[counter];
+        numbers[counter] = temp;
 
+        return counter;
     }
+
+    public static void quickSort(int[] array, int begin, int end) {
+        if (end <= begin) return;
+        int pivot = partition(array, begin, end);
+        quickSort(array, begin, pivot-1);
+        quickSort(array, pivot+1, end);
+    }
+
 }
